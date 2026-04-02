@@ -1,4 +1,4 @@
-# LAcycCom_typeRequestBufferElement
+# typeRequestBufferElement
 
 ## Description
 

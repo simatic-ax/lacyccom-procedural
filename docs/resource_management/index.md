@@ -17,7 +17,7 @@ To prevent these issues, a centralized Resource Management strategy is implement
 
 ## Principle of Operation
 
-The following figure shows the functionality of the function block [LAcycCom_HandleResource][HandleResource] in combination with the function block [LAcycCom_ResourceManager][ResourceManager]. The function block [LAcycCom_HandleResource][HandleResource] allows the user to request a resource for acyclic data exchange by registering it via the Request Buffer to the function block [LAcycCom_ResourceManager][ResourceManager]. When the requested resource for the acyclic communication is no longer needed, it should be released via the function block [LAcycCom_HandleResource][HandleResource].
+The following figure shows the functionality of the function block [HandleResource][HandleResource] in combination with the function block [ResourceManager][ResourceManager]. The function block [HandleResource][HandleResource] allows the user to request a resource for acyclic data exchange by registering it via the Request Buffer to the function block [ResourceManager][ResourceManager]. When the requested resource for the acyclic communication is no longer needed, it should be released via the function block [HandleResource][HandleResource].
 
 ![BlockDiagram](../assets/ResourceManagement_BlockDiagram.png)
 
@@ -27,25 +27,25 @@ The following figure shows the functionality of the function block [LAcycCom_Han
 
 | Name                     | Description           |
 | ------------------------ | --------------------- |
-| [LAcycCom_ResourceManager][ResourceManager] | Function block to manage state of multiple arbitrary resources |
-| [LAcycCom_HandleResource][HandleResource] | Function block for user programmed blocks to request the state of a resource centrally managed in the resource manager |
+| [ResourceManager][ResourceManager] | Function block to manage state of multiple arbitrary resources |
+| [HandleResource][HandleResource] | Function block for user programmed blocks to request the state of a resource centrally managed in the resource manager |
 
 ### Enums
 
 | Name                     | Description           |
 | ------------------------ | --------------------- |
-| [LAcycCom_ResourcesConstants](enums/LAcycCom_ResourcesConstants.md) | Contains constants to determine certain quantity structures of the application |
-| [LAcycCom_ResourcesStatus](enums/LAcycCom_ResourcesStatus.md) | Contains the status values for the resource management function blocks |
+| [ResourcesConstants](enums/LAcycCom_ResourcesConstants.md) | Contains constants to determine certain quantity structures of the application |
+| [ResourcesStatus](enums/LAcycCom_ResourcesStatus.md) | Contains the status values for the resource management function blocks |
 
 ### Data Types
 
 | Name                     | Description           |
 | ------------------------ | --------------------- |
-| [LAcycCom_typeActiveRequest](types/LAcycCom_typeActiveRequest.md) | Defines a data structure to describe an element from the active requests stored in the header of the buffer |
-| [LAcycCom_typeRequestBufferElement](types/LAcycCom_typeRequestBufferElement.md) | Defines a data structure to describe an element from the buffer used by this appliaction to share and manage state of resources |
-| [LAcycCom_typeRequestBufferHeader](types/LAcycCom_typeRequestBufferHeader.md) | Defines a data structure to control and provide information of the buffer used by this appliaction to share and manage state of resources |
-| [LAcycCom_typeResourceManagerConfiguration](types/LAcycCom_typeResourceManagerConfiguration.md) | Defines a data structure to describe configuration parameter for the resource management |
-| [LAcycCom_typeResourceManagerDiagnostics](types/LAcycCom_typeResourceManagerDiagnostics.md) | Defines a data structure to provide diagnostics about the resource manager |
+| [typeActiveRequest](types/LAcycCom_typeActiveRequest.md) | Defines a data structure to describe an element from the active requests stored in the header of the buffer |
+| [typeRequestBufferElement](types/LAcycCom_typeRequestBufferElement.md) | Defines a data structure to describe an element from the buffer used by this appliaction to share and manage state of resources |
+| [typeRequestBufferHeader](types/LAcycCom_typeRequestBufferHeader.md) | Defines a data structure to control and provide information of the buffer used by this appliaction to share and manage state of resources |
+| [typeResourceManagerConfiguration](types/LAcycCom_typeResourceManagerConfiguration.md) | Defines a data structure to describe configuration parameter for the resource management |
+| [typeResourceManagerDiagnostics](types/LAcycCom_typeResourceManagerDiagnostics.md) | Defines a data structure to provide diagnostics about the resource manager |
 
 [ResourceManager]: blocks/LAcycCom_ResourceManager.md
 [HandleResource]: blocks/LAcycCom_HandleResource.md

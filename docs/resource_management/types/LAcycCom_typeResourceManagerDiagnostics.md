@@ -1,4 +1,4 @@
-# LAcycCom_typeResourceManagerDiagnostics
+# typeResourceManagerDiagnostics
 
 ## Description
 
@@ -14,4 +14,4 @@ Defines a data structure to provide diagnostics about the resource manager.
 
 ## Usage
 
-This type is used as a diagnostics structure for the function block [LAcycCom_ResourceManager](../blocks/LAcycCom_ResourceManager.md#output-parameters).
+This type is used as a diagnostics structure for the function block [ResourceManager](../blocks/LAcycCom_ResourceManager.md#output-parameters).

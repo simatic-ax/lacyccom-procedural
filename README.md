@@ -40,25 +40,25 @@ The library is divided into the sections [Resource Management](docs/resource_man
 
 | Function Blocks          | Description           |
 | ------------------------ | --------------------- |
-| [LAcycCom_ResourceManager](docs/resource_management/blocks/LAcycCom_ResourceManager.md) | Function block to manage state of multiple arbitrary resources |
-| [LAcycCom_HandleResource](docs/resource_management/blocks/LAcycCom_HandleResource.md) | Function block for user programmed blocks to request the state of a resource centrally managed in the resource manager |
+| [ResourceManager](docs/resource_management/blocks/LAcycCom_ResourceManager.md) | Function block to manage state of multiple arbitrary resources |
+| [HandleResource](docs/resource_management/blocks/LAcycCom_HandleResource.md) | Function block for user programmed blocks to request the state of a resource centrally managed in the resource manager |
 
 ### Drive Functions
 
 | Function Blocks          | Description           |
 | ------------------------ | --------------------- |
-| [LAcycCom_AckDriveFaults](docs/drive_functions/blocks/LAcycCom_AckDriveFaults.md) | Function block to acknowledge faults at a drive object |
-| [LAcycCom_DriveActDeact](docs/drive_functions/blocks/LAcycCom_DriveActDeact.md) | Function block to activate or deactivate drive objects in the SINAMICS control unit |
-| [LAcycCom_DriveComponentsActDeact](docs/drive_functions/blocks/LAcycCom_DriveComponentsActDeact.md) | Function block to activate or deactivate drive object components (power unit and encoders) in the SINAMICS control unit |
-| [LAcycCom_DriveRamToRom](docs/drive_functions/blocks/LAcycCom_DriveRamToRom.md) | Function block to save the volatile RAM data of specified drive object to the retentive ROM |
-| [LAcycCom_ReadDriveMessagesDateTime](docs/drive_functions/blocks/LAcycCom_ReadDriveMessagesDateTime.md) | Function block to read active messages (alarms, fault and SI messages), sorted by time from a drive object |
-| [LAcycCom_ReadDriveMessagesOperatingHours](docs/drive_functions/blocks/LAcycCom_ReadDriveMessagesOperatingHours.md) | Function block to read active messages (alarms and faults), sorted by time from a G120 control unit |
-| [LAcycCom_ReadDriveParams](docs/drive_functions/blocks/LAcycCom_ReadDriveParams.md) | Function block to read multiple parameters via a dataset from a SINAMICS drive object |
-| [LAcycCom_ReadDriveSingleParam](docs/drive_functions/blocks/LAcycCom_ReadDriveSingleParam.md) | Function block to read a single parameter from a SINAMICS drive object |
-| [LAcycCom_RTCSinamics](docs/drive_functions/blocks/LAcycCom_RTCSinamics.md) | Function block to synchronize the clock of a SINAMICS control unit with the clock of the SIMATIC controller (with ping compensation)  |
-| [LAcycCom_RTCSinamicsAcyclic](docs/drive_functions/blocks/LAcycCom_RTCSinamicsAcyclic.md) | Function block to synchronize the clock of a SINAMICS control unit with the clock of the SIMATIC controller (with acyclic data exchange) |
-| [LAcycCom_WriteDriveParams](docs/drive_functions/blocks/LAcycCom_WriteDriveParams.md) | Function block to write multiple parameters via a dataset from a SINAMICS drive object |
-| [LAcycCom_WriteDriveSingleParam](docs/drive_functions/blocks/LAcycCom_WriteDriveSingleParam.md) | Function block to write a single parameter from a SINAMICS drive object |
+| [AckDriveFaults](docs/drive_functions/blocks/LAcycCom_AckDriveFaults.md) | Function block to acknowledge faults at a drive object |
+| [DriveActDeact](docs/drive_functions/blocks/LAcycCom_DriveActDeact.md) | Function block to activate or deactivate drive objects in the SINAMICS control unit |
+| [DriveComponentsActDeact](docs/drive_functions/blocks/LAcycCom_DriveComponentsActDeact.md) | Function block to activate or deactivate drive object components (power unit and encoders) in the SINAMICS control unit |
+| [DriveRamToRom](docs/drive_functions/blocks/LAcycCom_DriveRamToRom.md) | Function block to save the volatile RAM data of specified drive object to the retentive ROM |
+| [ReadDriveMessagesDateTime](docs/drive_functions/blocks/LAcycCom_ReadDriveMessagesDateTime.md) | Function block to read active messages (alarms, fault and SI messages), sorted by time from a drive object |
+| [ReadDriveMessagesOperatingHours](docs/drive_functions/blocks/LAcycCom_ReadDriveMessagesOperatingHours.md) | Function block to read active messages (alarms and faults), sorted by time from a G120 control unit |
+| [ReadDriveParams](docs/drive_functions/blocks/LAcycCom_ReadDriveParams.md) | Function block to read multiple parameters via a dataset from a SINAMICS drive object |
+| [ReadDriveSingleParam](docs/drive_functions/blocks/LAcycCom_ReadDriveSingleParam.md) | Function block to read a single parameter from a SINAMICS drive object |
+| [RTCSinamics](docs/drive_functions/blocks/LAcycCom_RTCSinamics.md) | Function block to synchronize the clock of a SINAMICS control unit with the clock of the SIMATIC controller (with ping compensation)  |
+| [RTCSinamicsAcyclic](docs/drive_functions/blocks/LAcycCom_RTCSinamicsAcyclic.md) | Function block to synchronize the clock of a SINAMICS control unit with the clock of the SIMATIC controller (with acyclic data exchange) |
+| [WriteDriveParams](docs/drive_functions/blocks/LAcycCom_WriteDriveParams.md) | Function block to write multiple parameters via a dataset from a SINAMICS drive object |
+| [WriteDriveSingleParam](docs/drive_functions/blocks/LAcycCom_WriteDriveSingleParam.md) | Function block to write a single parameter from a SINAMICS drive object |
 
 ## Examples
 
@@ -68,48 +68,48 @@ The library is divided into the sections [Resource Management](docs/resource_man
 USING Simatic.Ax.LAcycCom.Procedural;
 
 PROGRAM SampleProgramS120
-  VAR_INPUT
-    readParam : BOOL;
-  END_VAR
+    VAR_INPUT
+        readParam : BOOL;
+    END_VAR
 
-  VAR_OUTPUT
-    value : REAL;
-  END_VAR
+    VAR_OUTPUT
+        value : REAL;
+    END_VAR
 
-  VAR_EXTERNAL
-    DRIVE_BLUE_TEL105 : UINT;
-  END_VAR
-  
-  VAR
-    _resourceManagerConfig : LAcycCom_typeResourceManagerConfiguration;
-    _requestBufferHeader : LAcycCom_typeRequestBufferHeader;
-    _requestBuffer : ARRAY[1..10] OF LAcycCom_typeRequestBufferElement;
-    _instResourceManager : LAcycCom_ResourceManager;
-    _instReadDriveSingleParam : LAcycCom_ReadDriveSingleParam;
-  END_VAR
-
-  // call resource manager
-  _instResourceManager(enable := TRUE, 
-                        config := _resourceManagerConfig, 
-                        requestBufferHeader := _requestBufferHeader, 
-                        requestBuffer := _requestBuffer);
-
-  // call read drive single param
-  _instReadDriveSingleParam(hardwareId := DRIVE_BLUE_TEL105, 
-                            parameterNumber := UINT#1082, // maximum speed 
-                            requestBufferHeader := _requestBufferHeader, 
-                            requestBuffer := _requestBuffer);
-
-  // resource manager needs to be valid, before executing function blocks from Drive Functions
-  IF _instResourceManager.valid THEN
-    // execute read single parameter
-    _instReadDriveSingleParam.execute := readParam;
+    VAR_EXTERNAL
+        DRIVE_BLUE_TEL105 : UINT;
+    END_VAR
     
-    // reflect value to output
-    value := _instReadDriveSingleParam.realValue;
-  ELSE
-    _instReadDriveSingleParam.execute := FALSE;
-  END_IF;
+    VAR
+        _resourceManagerConfig : typeResourceManagerConfiguration;
+        _requestBufferHeader : typeRequestBufferHeader;
+        _requestBuffer : ARRAY[1..10] OF typeRequestBufferElement;
+        _instResourceManager : ResourceManager;
+        _instReadDriveSingleParam : ReadDriveSingleParam;
+    END_VAR
+
+    // call resource manager
+    _instResourceManager(enable := TRUE, 
+                         config := _resourceManagerConfig, 
+                         requestBufferHeader := _requestBufferHeader, 
+                         requestBuffer := _requestBuffer);
+
+    // call read drive single param
+    _instReadDriveSingleParam(hardwareId := DRIVE_BLUE_TEL105, 
+                              parameterNumber := UINT#1082, // maximum speed 
+                              requestBufferHeader := _requestBufferHeader, 
+                              requestBuffer := _requestBuffer);
+                              
+    // resource manager needs to be valid, before executing function blocks from Drive Functions
+    IF _instResourceManager.valid THEN
+        // execute read single parameter
+        _instReadDriveSingleParam.execute := readParam;
+
+        // reflect value to output
+        value := _instReadDriveSingleParam.realValue;
+    ELSE
+        _instReadDriveSingleParam.execute := FALSE;
+    END_IF;
 END_PROGRAM
 ```
 
@@ -119,67 +119,67 @@ END_PROGRAM
 USING Simatic.Ax.LAcycCom.Procedural;
 
 PROGRAM SampleProgramS210
-  VAR_INPUT
-    writeParams : BOOL;
-  END_VAR
+    VAR_INPUT
+        writeParams : BOOL;
+    END_VAR
 
-  VAR_OUTPUT
-    done: BOOL;
-    error: BOOL;
-  END_VAR
+    VAR_OUTPUT
+        done: BOOL;
+        error: BOOL;
+    END_VAR
 
-  VAR_EXTERNAL
-    DRIVE_1_MAP : UINT;
-  END_VAR
-    
-  VAR
-    _resourceManagerConfig : LAcycCom_typeResourceManagerConfiguration;
-    _requestBufferHeader : LAcycCom_typeRequestBufferHeader;
-    _requestBuffer : ARRAY[1..10] OF LAcycCom_typeRequestBufferElement;
-    _instResourceManager : LAcycCom_ResourceManager;
-    _instWriteDriveParams : LAcycCom_WriteDriveParams;
-    _dataset : ARRAY[1..3] OF LAcycCom_typeDriveDataset;
-  END_VAR
-    
-  // call resource manager
-  _instResourceManager(enable := TRUE, 
-                        config := _resourceManagerConfig, 
-                        requestBufferHeader := _requestBufferHeader, 
-                        requestBuffer := _requestBuffer);
+    VAR_EXTERNAL
+        DRIVE_1_MAP : UINT;
+    END_VAR
+        
+    VAR
+        _resourceManagerConfig : typeResourceManagerConfiguration;
+        _requestBufferHeader : typeRequestBufferHeader;
+        _requestBuffer : ARRAY[1..10] OF typeRequestBufferElement;
+        _instResourceManager : ResourceManager;
+        _instWriteDriveParams : WriteDriveParams;
+        _dataset : ARRAY[1..3] OF typeDriveDatasetWrite;
+    END_VAR
+        
+    // call resource manager
+    _instResourceManager(enable := TRUE, 
+                         config := _resourceManagerConfig, 
+                         requestBufferHeader := _requestBufferHeader, 
+                         requestBuffer := _requestBuffer);
 
-  // call write drive params
-  _instWriteDriveParams(hardwareId := DRIVE_1_MAP,
-                        parameterCount := -1,
-                        dataset := _dataset,
-                        requestBufferHeader := _requestBufferHeader,
-                        requestBuffer := _requestBuffer);
+    // call write drive params
+    _instWriteDriveParams(hardwareId := DRIVE_1_MAP,
+                          parameterCount := -1,
+                          dataset := _dataset,
+                          requestBufferHeader := _requestBufferHeader,
+                          requestBuffer := _requestBuffer);
 
-  // resource manager needs to be valid, before executing function blocks from Drive Functions
-  IF _instResourceManager.valid THEN
+    // resource manager needs to be valid, before executing function blocks from Drive Functions
+    IF _instResourceManager.valid THEN
 
-    // define parameters and their values
-    _dataset[1].parameterNumber := UINT#1083; // positive speed limit
-    _dataset[1].writeSelector := LAcycCom_DatatypeSelector#TYPE_REAL;
-    _dataset[1].realValue := 6000;
-    _dataset[2].parameterNumber := UINT#1086; // negative speed limit
-    _dataset[2].writeSelector := LAcycCom_DatatypeSelector#TYPE_REAL;
-    _dataset[2].realValue := -6000;
-    _dataset[3].parameterNumber := UINT#1121; // ramp down time
-    _dataset[3].writeSelector := LAcycCom_DatatypeSelector#TYPE_REAL;
-    _dataset[3].realValue := REAL#1.5;
+        // define parameters and their values
+        _dataset[1].parameterNumber := UINT#1083; // positive speed limit
+        _dataset[1].valueSelector := DatatypeSelector#TYPE_REAL;
+        _dataset[1].realValue := 6000;
+        _dataset[2].parameterNumber := UINT#1086; // negative speed limit
+        _dataset[2].valueSelector := DatatypeSelector#TYPE_REAL;
+        _dataset[2].realValue := -6000;
+        _dataset[3].parameterNumber := UINT#1121; // ramp down time
+        _dataset[3].valueSelector := DatatypeSelector#TYPE_REAL;
+        _dataset[3].realValue := REAL#1.5;
 
-    // execute write drive parameters
-    _instWriteDriveParams.execute := writeParams;
+        // execute write drive parameters
+        _instWriteDriveParams.execute := writeParams;
 
-    // reflect state to outputs
-    done := _instWriteDriveParams.done;
-    error := _instWriteDriveParams.error;
-  ELSE
-    _instWriteDriveParams.execute := FALSE;
+        // reflect state to outputs
+        done := _instWriteDriveParams.done;
+        error := _instWriteDriveParams.error;
+    ELSE
+        _instWriteDriveParams.execute := FALSE;
 
-    done := FALSE;
-    error := FALSE;
-  END_IF;
+        done := FALSE;
+        error := FALSE;
+    END_IF;
 END_PROGRAM
 ```
 
@@ -189,4 +189,4 @@ Thanks for your interest in contributing. Anybody is free to report bugs, unclea
 
 ## License and Legal information
 
-Please read the [Legal information](LICENSE.md)
+Please read the [Legal information](LICENSE)

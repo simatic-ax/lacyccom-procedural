@@ -1,4 +1,4 @@
-# LAcycCom_DriveFunctionStatus
+# DriveFunctionStatus
 
 | Symbol | Value | Description |
 | ------ | ----- | ----------- |

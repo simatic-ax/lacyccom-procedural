@@ -1,4 +1,4 @@
-# LAcycCom_ResourcesStatus
+# ResourcesStatus
 
 | Symbol | Value | Description |
 | ------ | ----- | ----------- |

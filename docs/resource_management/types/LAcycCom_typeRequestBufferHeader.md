@@ -1,4 +1,4 @@
-# LAcycCom_typeRequestBufferHeader
+# typeRequestBufferHeader
 
 ## Description
 
@@ -14,7 +14,7 @@ Defines a data structure to control and provide information of the buffer used b
 | numberOfRequests | INT | Number of existing requests in request buffer not released yet |
 | bufferLowerBound | DINT | Start index of buffer |
 | bufferUpperBound | DINT | End index of buffer |
-| activeRequests | ARRAY[0..[LAcycCom_ResourcesConstants#ACTIVE_REQUESTS](../enums/LAcycCom_ResourcesConstants.md)] OF [LAcycCom_typeActiveRequest](LAcycCom_typeActiveRequest.md) | Currently enabled request elements |
+| activeRequests | ARRAY[0..[ResourcesConstants#ACTIVE_REQUESTS](../enums/LAcycCom_ResourcesConstants.md)] OF [typeActiveRequest](LAcycCom_typeActiveRequest.md) | Currently enabled request elements |
 
 ## Usage
 

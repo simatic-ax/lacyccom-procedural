@@ -1,11 +1,16 @@
 NAMESPACE Simatic.Ax.LAcycCom.Procedural
-  TYPE
-    /// Defines the configuration used for LAcycCom_ResourceManager
-    LAcycCom_typeResourceManagerConfiguration : STRUCT
-      timeoutBufferLock : TIME := T#1S;   /// Timeout for locking of complete request buffer, that means resource manager has no access
-      maxQueueTime : TIME := T#1M10S;   /// Maximum waiting time of a request waiting in queue before releasing the element is enforced by resource manager
-      maxAssignedTime : TIME := T#1M;   /// Maximum time a resource is assigned to a request
-      delayReleaseAfterReject : TIME := T#10S;   /// Delay for releasing resource after it was rejected by resource manager
-    END_STRUCT;
-  END_TYPE
+    TYPE
+        /// Defines the configuration used for LAcycCom_ResourceManager
+        typeResourceManagerConfiguration : STRUCT
+            /// Timeout for locking of complete request buffer. 
+            /// If the application doesn't unlock, the Resource Manager takes control back.
+            timeoutBufferLock : TIME := T#1S;
+            /// Maximum waiting time of a request in the queue before it is forcefully removed.
+            maxQueueTime : TIME := T#1M10S;
+            /// Maximum time a communication resource (Hardware ID) can be assigned to a single request.
+            maxAssignedTime : TIME := T#1M;
+            /// Delay for releasing a resource after it was rejected (prevents rapid-fire retries).
+            delayReleaseAfterReject : TIME := T#10S;
+        END_STRUCT;
+    END_TYPE
 END_NAMESPACE

@@ -1,4 +1,4 @@
-# LAcycCom_DriveComponentMode
+# DriveComponentMode
 
 | Symbol | Value | Description |
 | ------ | ----- | ----------- |

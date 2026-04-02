@@ -1,4 +1,4 @@
-# LAcycCom_typeDriveDiagnostics
+# typeDriveDiagnostics
 
 ## Description
 
@@ -15,7 +15,7 @@ Defines a data structure that is used by drive functions to provide detailed dia
 | hardwareId | UINT | Hardware identifier of the hardware module |
 | parameterCount | INT | Total amount of parameters |
 | firstParameterError | INT | Number of parameter at which the error occurred (-1: no parameter with error) |
-| errorValue | BYTE | Error number (16#FF: no error; else: see error list) |
+| errorValue | [DriveValueErrors](../enums/LAcycCom_DriveValueErrors.md) | Specific PROFIdrive error value (16#FF: no error) |
 
 ## Usage
 

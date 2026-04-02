@@ -4,7 +4,7 @@ version: 0.0.0-placeholder
 author: Siemens AG
 
 # Description will be displayed in the apax extension
-description: <add your description here, which will be shown in the apax extension>
+description: Library to manage acyclic communcation using DPV1 services.
 type: lib
 
 #URL to the repository

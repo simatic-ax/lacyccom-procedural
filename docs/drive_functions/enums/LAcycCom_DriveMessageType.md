@@ -1,4 +1,4 @@
-# LAcycCom_DriveMessageType
+# DriveMessageType
 
 | Symbol | Value | Description |
 | ------ | ----- | ----------- |

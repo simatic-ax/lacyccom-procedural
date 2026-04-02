@@ -1,4 +1,4 @@
-# LAcycCom_ResourcesConstants
+# ResourcesConstants
 
 | Symbol | Value | Description |
 | ------ | ----- | ----------- |

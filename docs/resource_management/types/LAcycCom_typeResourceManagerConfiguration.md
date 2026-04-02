@@ -1,4 +1,4 @@
-# LAcycCom_typeResourceManagerConfiguration
+# typeResourceManagerConfiguration
 
 ## Description
 
@@ -15,4 +15,4 @@ Defines a data structure to describe configuration parameter for the resource ma
 
 ## Usage
 
-This type is used as a configuration structure for the function block [LAcycCom_ResourceManager](../blocks/LAcycCom_ResourceManager.md#input-parameters).
+This type is used as a configuration structure for the function block [ResourceManager](../blocks/LAcycCom_ResourceManager.md#input-parameters).

@@ -1,4 +1,4 @@
-# LAcycCom_typeActiveRequest
+# typeActiveRequest
 
 ## Description
 
@@ -13,4 +13,4 @@ Defines a data structure to describe an element from the active requests stored 
 
 ## Usage
 
-This type is used in arrays to exchange data about an active request stored in [LAcycCom_typeRequestBufferHeader](LAcycCom_typeRequestBufferHeader.md#structure).
+This type is used in arrays to exchange data about an active request stored in [typeRequestBufferHeader](LAcycCom_typeRequestBufferHeader.md#structure).
